@@ -4,7 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Home from "@/pages/home";
+import Home from "@/pages/home.jsx";
 import NotFound from "@/pages/not-found";
 
 function Router() {
