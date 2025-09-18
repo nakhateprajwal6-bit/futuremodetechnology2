@@ -3,11 +3,11 @@ import Navbar from "@/components/Navbar.jsx";
 import Hero from "@/components/Hero.jsx";
 import About from "@/components/About.jsx";
 import VisionMission from "@/components/VisionMission.jsx";
-import Programs from "@/components/Programs";
-import Gallery from "@/components/Gallery";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import Chatbot from "@/components/Chatbot";
+import Programs from "@/components/Programs.jsx";
+import Gallery from "@/components/Gallery.jsx";
+import Contact from "@/components/Contact.jsx";
+import Footer from "@/components/Footer.jsx";
+import Chatbot from "@/components/Chatbot.jsx";
 import WhatWeOffer from "@/components/WhatWeOffer.jsx";
 
 export default function Home() {

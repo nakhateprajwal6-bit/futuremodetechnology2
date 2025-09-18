@@ -1,22 +1,15 @@
-import { useState, useRef, useLayoutEffect, useEffect } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-
-interface ChatMessage {
-  id: number;
-  message: string;
-  isBot: boolean;
-}
+import "./Chatbot.css";
 
 export default function Chatbot() {
-  const [isOpen, setIsOpen] = useState(true); // auto-open on page load
+  const [isOpen, setIsOpen] = useState(true);
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [messages, setMessages] = useState([]);
+  const containerRef = useRef(null);
 
   // Bot response logic
-  const getBotResponse = (userMessage: string) => {
+  const getBotResponse = (userMessage) => {
     const lower = userMessage.toLowerCase();
 
     if (lower.includes("robotic")) return "Robotics Lab teaches building intelligent robotic systems.";
@@ -38,16 +31,16 @@ export default function Chatbot() {
   };
 
   // Handle sending a message
-  const handleSendMessage = (e: React.FormEvent) => {
+  const handleSendMessage = (e) => {
     e.preventDefault();
     if (!message.trim()) return;
 
-    const userMsg: ChatMessage = { id: Date.now(), message: message.trim(), isBot: false };
+    const userMsg = { id: Date.now(), message: message.trim(), isBot: false };
     setMessages((prev) => [...prev, userMsg]);
     setMessage("");
 
     setTimeout(() => {
-      const botMsg: ChatMessage = { id: Date.now() + 1, message: getBotResponse(userMsg.message), isBot: true };
+      const botMsg = { id: Date.now() + 1, message: getBotResponse(userMsg.message), isBot: true };
       setMessages((prev) => [...prev, botMsg]);
     }, 500);
   };
@@ -60,31 +53,29 @@ export default function Chatbot() {
   }, [messages]);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="chatbot-container">
       {/* Chat Window */}
       {isOpen && (
-        <div className="bg-card rounded-xl shadow-2xl w-80 h-96 border border-border mb-4 overflow-hidden flex flex-col animate-fade-in">
+        <div className="chat-window">
           {/* Header */}
-          <div className="bg-primary text-primary-foreground p-4 flex justify-between items-center">
-            <h3 className="font-semibold">Tech Support Assistant</h3>
-            <Button
-              variant="ghost"
-              size="icon"
+          <div className="chat-header">
+            <h3 className="chat-title">Tech Support Assistant</h3>
+            <button
               onClick={() => setIsOpen(false)}
-              className="text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/10"
+              className="chat-close-button"
             >
-              <X className="h-4 w-4" />
-            </Button>
+              <X />
+            </button>
           </div>
 
           {/* Messages */}
           <div
             ref={containerRef}
-            className="flex-1 p-4 overflow-y-auto flex flex-col space-y-3"
+            className="messages-container"
           >
             {messages.length === 0 && (
-              <div className="bg-muted rounded-lg p-3 max-w-xs">
-                <p className="text-sm">
+              <div className="welcome-message">
+                <p>
                   Hi! Ask me about Robotics Lab, Industrial Training, IoT, 3D Printing, Internship Programs, CAD, R&D Services, Web/Mobile Development, Data Science, Cybersecurity, DevOps, Blockchain, or Software Development.
                 </p>
               </div>
@@ -93,43 +84,42 @@ export default function Chatbot() {
             {messages.map((msg) => (
               <div
                 key={msg.id}
-                className={`rounded-lg p-3 max-w-xs break-words ${
-                  msg.isBot
-                    ? "bg-muted text-left"
-                    : "bg-primary text-primary-foreground ml-auto text-right"
-                }`}
+                className={`message ${msg.isBot ? "bot" : "user"}`}
               >
-                <p className="text-sm">{msg.message}</p>
+                <p>{msg.message}</p>
               </div>
             ))}
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t border-border">
-            <form onSubmit={handleSendMessage} className="flex space-x-2">
-              <Input
+          <div className="chat-input-container">
+            <form onSubmit={handleSendMessage} className="chat-input-form">
+              <input
                 type="text"
+                className="chat-input"
                 placeholder="Type your message..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="flex-1 text-sm"
               />
-              <Button type="submit" size="sm" disabled={!message.trim()}>
-                <Send className="h-4 w-4" />
-              </Button>
+              <button 
+                type="submit" 
+                className="chat-send-button"
+                disabled={!message.trim()}
+              >
+                <Send />
+              </button>
             </form>
           </div>
         </div>
       )}
 
       {/* Toggle Button */}
-      <Button
+      <button
         onClick={() => setIsOpen(!isOpen)}
-        size="lg"
-        className="w-14 h-14 rounded-full shadow-lg hover:shadow-xl animate-float bg-primary text-primary-foreground hover:bg-primary/90"
+        className="chat-toggle-button"
       >
-        <MessageCircle className="h-6 w-6" />
-      </Button>
+        <MessageCircle />
+      </button>
     </div>
   );
 }
