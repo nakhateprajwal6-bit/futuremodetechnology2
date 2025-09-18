@@ -2,6 +2,12 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Play, X } from "lucide-react";
 import { Bot, Brain, SatelliteDish, Move, CircuitBoard } from "lucide-react";
+import heroBackground from "@/assets/hero-background.jpg";
+import roboticsImage from "@/assets/robotics.jpg";
+import aimlImage from "@/assets/aiml.jpg";
+import iotImage from "@/assets/iot.jpg";
+import printingImage from "@/assets/3d-printing.jpg";
+import pcbImage from "@/assets/pcb.jpg";
 
 // Programs & Services mapping
 const programs = [
@@ -10,7 +16,7 @@ const programs = [
     description:
       "Design and build intelligent robotic systems integrating mechanical, electrical, and software components.",
     duration: "18 Months",
-    image: "./../src/assets/Robotics.jpeg",
+    image: roboticsImage,
     icon: Bot,
   },
   {
@@ -18,7 +24,7 @@ const programs = [
     description:
       "Explore machine learning, deep learning, and AI applications with cutting-edge tools and techniques.",
     duration: "18 Months",
-    image: "./../src/assets/H2.jpg",
+    image: aimlImage,
     icon: Brain,
   },
   {
@@ -26,7 +32,7 @@ const programs = [
     description:
       "Connect and control robots remotely via IoT technologies and wireless communication systems.",
     duration: "11 Months",
-    image: "./../src/assets/h3.png",
+    image: iotImage,
     icon: SatelliteDish,
   },
   {
@@ -34,7 +40,7 @@ const programs = [
     description:
       "Explore additive manufacturing techniques and create complex prototypes using 3D printing tools.",
     duration: "6 Months",
-    image: "./../src/assets/h4.jpg",
+    image: printingImage,
     icon: Move,
   },
   {
@@ -42,7 +48,7 @@ const programs = [
     description:
       "Learn PCB designing, schematic creation, and PCB manufacturing processes for electronics projects.",
     duration: "4 Months",
-    image: "./../src/assets/h5.jpg",
+    image: pcbImage,
     icon: CircuitBoard,
   },
 ];
@@ -55,7 +61,7 @@ export default function Hero() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <img
-          src="./../src/assets/humanoid-banner.png"
+          src={heroBackground}
           alt="Modern university campus"
           className="w-full h-full object-cover opacity-90"
         />
