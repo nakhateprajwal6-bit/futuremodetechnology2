@@ -1,8 +1,8 @@
 import { Helmet } from "react-helmet-async";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import VisionMission from "@/components/VisionMission";
+import Navbar from "@/components/Navbar.jsx";
+import Hero from "@/components/Hero.jsx";
+import About from "@/components/About.jsx";
+import VisionMission from "@/components/VisionMission.jsx";
 import Programs from "@/components/Programs";
 import Gallery from "@/components/Gallery";
 import Contact from "@/components/Contact";
