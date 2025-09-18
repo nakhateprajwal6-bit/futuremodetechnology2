@@ -54,7 +54,7 @@ const programs = [
 ];
 
 export default function Hero() {
-  const [selectedProgram, setSelectedProgram] = useState(null);
+  const [selectedProgram, setSelectedProgram] = useState<typeof programs[0] | null>(null);
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
@@ -82,7 +82,7 @@ export default function Hero() {
           {programs.map((program) => (
             <Button
               key={program.title}
-              size="md"
+              size="default"
               className="px-6 py-3 text-white font-bold border-2 border-cyan-500 rounded-md bg-transparent hover:bg-cyan-500 hover:text-black transition-all shadow-[0_0_15px_rgb(0,255,255)] hover:shadow-[0_0_25px_rgb(0,255,255),0_0_40px_rgb(0,255,255)]"
               onClick={() => setSelectedProgram(program)}
             >
